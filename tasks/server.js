@@ -1,7 +1,7 @@
 const DataStore = require('../lib/data-store');
 const Gulp = require('gulp');
 const PluginError = require('plugin-error');
-const Hapi = require('hapi');
+const Hapi = require('@hapi/hapi');
 const UserAgent = require('../lib/user-agent');
 const Log = require('fancy-log');
 
@@ -11,9 +11,10 @@ Gulp.task('server', callback => {    // eslint-disable-line no-unused-vars
   exports.start(() => {});
 });
 
-exports.start = (startup, testComplete) => {
-  server = new Hapi.Server();
-  server.connection({ port: 9999 });
+exports.start = async (startup, testComplete) => {
+  server = new Hapi.Server({ port: 9999 });
+  await server.register(require('@hapi/inert'));
+  //server.connection({ port: 9999 });
 
   // Simple endpoint to allow for sending remote data back to the server.
   server.route({
@@ -26,7 +27,7 @@ exports.start = (startup, testComplete) => {
       Log('Storing data for browser', userAgent.name, userAgent.version, `{${Object.keys(data).join(', ')}}`);
       DataStore.store(userAgent.name, payload.tag, userAgent.version, data);
 
-      reply({});
+      return {}
     }
   });
   server.route({
@@ -38,7 +39,7 @@ exports.start = (startup, testComplete) => {
 
       Log('[debug]', userAgent.name, userAgent.version, message);
 
-      reply({});
+      return {}
     }
   });
 
@@ -46,11 +47,10 @@ exports.start = (startup, testComplete) => {
     method: 'POST',
     path: '/done',
     handler(request, reply) {
-      reply({});
-
       if (testComplete) {
         testComplete();
       }
+      return {}
     }
   });
 
@@ -63,7 +63,7 @@ exports.start = (startup, testComplete) => {
       }
     }
   });
-  server.start(err => {
+  await server.start(err => {
     if (err) {
       throw new PluginError('server', err);
     }
