@@ -8,9 +8,8 @@ var obj = {
 
 var fn = function (src) {
   var o = {};
-  for (var i in keys) {
-    var key = keys[i];
-    o[key] = src[key];
+  for (var i in src) {
+    o[i] = src[i];
   }
   return o;
 };

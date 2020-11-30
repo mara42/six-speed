@@ -9,7 +9,7 @@ function square(a) {
 
 function fn() {
   var ret = 0;
-  for (name in data) {
+  for (var name in data) {
     ret += data[name];
   }
   return ret;
