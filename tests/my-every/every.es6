@@ -1,4 +1,7 @@
-var data = [2, 2 * 10, 2 * 4, 2 * 90, 2 * 2001];
+var data = []
+for (var i=0; i < 4000; i++) {
+  data.push(2*i)
+}
 
 function isEven(a) {
   // using modulo to handle floats better

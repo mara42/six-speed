@@ -1,7 +1,11 @@
-var data = [2, 2 * 10, 2 * 4, 2 * 90, 2 * 2001]
+var data = []
+for (var i=0; i < 4000; i++) {
+  data.push(2*i)
+}
+data[3999] = 8000
+var target = 8000
 
 function fn() {
-  var target = 2 * 90
   for (var i = 0; i < data.length; i++) {
     if (data[i] === target) {
       return true
