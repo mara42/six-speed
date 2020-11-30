@@ -6,18 +6,18 @@ for (var i = 0, t = 4000; i < t; i++) {
 function square(a) {
   return a * a
 }
-// data[Symbol.iterator] = function() {
-//   var array = Object.keys(data),
-//       nextIndex = 0;
+data[Symbol.iterator] = function() {
+   var array = Object.keys(data),
+       nextIndex = 0;
 
-//   return {
-//     next: function() {
-//        return nextIndex < array.length ?
-//          {value: data[array[nextIndex++]], done: false} :
-//          {done: true};
-//     }
-//   };
-// };
+   return {
+     next: function() {
+        return nextIndex < array.length ?
+          {value: data[array[nextIndex++]], done: false} :
+          {done: true};
+     }
+   };
+ };
 
 function fn() {
   var ret = 0;

@@ -8,7 +8,7 @@ function square(a) {
 }
 
 function fn() {
-  var ret = '';
+  var ret = 0;
   for (var value of data) {
     ret += value;
   }
