@@ -1,5 +1,5 @@
 var data = []
-var n = 4000
+var n = 1e6
 function shuffle(array) {
   var currentIndex = array.length, temporaryValue, randomIndex;
 
@@ -23,17 +23,21 @@ for (var i=0; i < n; i++) {
 }
 shuffle(data)
 
-
 function isEven(a) {
   // using modulo to handle floats better
-  return a % 2 === 0;
+  return a % 2 === 0
 }
 
 function fn() {
-  var res = data.filter(isEven);
-  return res.length;
+  var results = []
+  for (var i = 0; i < data.length; i++) {
+    if (isEven(data[i])) {
+      results.push(data[i])
+    }
+  }
+  return results.length
 }
 
-assertEqual(fn(), n/2);
+assertEqual(fn(), n/2)
 
-test(fn);
+test(fn)

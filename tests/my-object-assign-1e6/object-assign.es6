@@ -1,25 +1,21 @@
-var obj = {
+const obj = {
   a: 1,
   b: true,
   c: function () {},
   d: null,
   e: 'e'
 };
-var n = 4000
+var n = 1e6
 
 for (var i = 0; i < n; i++) {
   obj[i.toString(16)] = i
 }
 
-var fn = function (src) {
-  var o = {};
-  for (var i in src) {
-    o[i] = src[i];
-  }
-  return o;
+const fn = function (src) {
+  return Object.assign({}, src);
 };
 
-var r = fn(obj);
+const r = fn(obj);
 assertEqual(r.a, obj.a);
 assertEqual(r.b, obj.b);
 assertEqual(r.c, obj.c);

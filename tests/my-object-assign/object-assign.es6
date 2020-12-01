@@ -5,6 +5,11 @@ const obj = {
   d: null,
   e: 'e'
 };
+var n = 4000
+
+for (var i = 0; i < n; i++) {
+  obj[i.toString(16)] = i
+}
 
 const fn = function (src) {
   return Object.assign({}, src);

@@ -1,0 +1,20 @@
+var data = []
+for (var i = 0, t = 1e6; i < t; i++) {
+  data.push(Math.round(Math.random() * t))
+}
+
+function square(a) {
+  return a * a
+}
+
+function fn() {
+  var newData = []
+  for (var i = 0; i < data.length; i++) {
+    newData[i] = square(data[i])
+  }
+  return newData.length
+}
+
+assertEqual(fn(), 1e6)
+
+test(fn)

@@ -1,0 +1,25 @@
+var data = []
+var n = 1e6
+for (var i=0; i < n; i++) {
+  data.push(2*i)
+}
+data[3999] = n*2
+var target = n*2
+
+function is8000(a) {
+  return a === target
+}
+
+function fn() {
+  for (var i = 0; i < data.length; i++) {
+    if (is8000(data[i])) {
+      return true
+    }
+  }
+  return false
+}
+
+assertEqual(fn(), true)
+
+test(fn)
+

@@ -1,5 +1,5 @@
 var data = []
-var n = 4000
+var n = 4e4
 function shuffle(array) {
   var currentIndex = array.length, temporaryValue, randomIndex;
 
