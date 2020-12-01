@@ -15,7 +15,7 @@ function fn() {
   return ret
 }
 
-assertEqual(fn(), 499999500000)
+assertEqual(fn(), 799980000)
 
 test(fn)
 
